@@ -8,6 +8,6 @@ data class Image(
 )
 
 fun ApiImage.toDomain() = Image(
-    path = path,
-    extension = extension
+    path = path.orEmpty(),
+    extension = extension.orEmpty()
 )

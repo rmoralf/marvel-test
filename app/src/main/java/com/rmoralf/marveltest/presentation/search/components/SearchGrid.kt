@@ -15,14 +15,12 @@ import com.rmoralf.marveltest.domain.model.Character
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun CharacterGrid(
+fun SearchGrid(
     characterList: LazyPagingItems<Character>,
     navController: NavController
 ) {
     LazyVerticalGrid(
         cells = GridCells.Fixed(2),
-//        cells = GridCells.Adaptive(128.dp),
-        // content padding
         contentPadding = PaddingValues(
             start = 12.dp,
             top = 16.dp,
@@ -34,7 +32,7 @@ fun CharacterGrid(
     ) {
         items(characterList) { character ->
             character?.let {
-                CharacterGridItem(it, navController)
+                SearchGridItem(it, navController)
             }
         }
     }

@@ -17,10 +17,9 @@ class CharactersRepositoryImpl @Inject constructor(
     private val service: CharactersService
 ) : CharactersRepository {
 
-
-    override fun getAllCharacters() = Pager(
+    override fun searchCharacters(query: String) = Pager(
         config = PagingConfig(pageSize = 20),
-        pagingSourceFactory = { CharacterPagingSource(service) }
+        pagingSourceFactory = { CharacterPagingSource(service, query) }
     ).flow
 
     override suspend fun getCharacterDetails(charId: Int) = flow {
@@ -29,6 +28,7 @@ class CharactersRepositoryImpl @Inject constructor(
             val characterDetails = service
                 .getCharacterDetails(characterId = charId)
                 .toDomain()
+                .data.results.first()
             emit(Success(characterDetails))
         } catch (e: Exception) {
             emit(Error(e.message ?: e.toString()))

@@ -1,14 +1,10 @@
 package com.rmoralf.marveltest.presentation.search
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -16,8 +12,9 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.rmoralf.marveltest.core.Utils.Companion.printError
 import com.rmoralf.marveltest.presentation.components.ProgressBar
-import com.rmoralf.marveltest.presentation.search.components.CharacterGrid
-import com.rmoralf.marveltest.presentation.search.components.EmptyListText
+import com.rmoralf.marveltest.presentation.search.components.EmptySearchListText
+import com.rmoralf.marveltest.presentation.search.components.SearchGrid
+import com.rmoralf.marveltest.presentation.search.components.SearchRow
 import com.rmoralf.marveltest.presentation.search.components.SearchTopBar
 
 @Composable
@@ -28,19 +25,26 @@ fun SearchScreen(
 
     val characterList = viewModel.characters.collectAsLazyPagingItems()
 
+
     Scaffold(
-        topBar = { SearchTopBar() }
+        topBar = { SearchTopBar(navController) }
     ) {
 
         Box(
             modifier = Modifier
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center,
+                .fillMaxSize()
         ) {
-            if (characterList.itemCount > 0) {
-                CharacterGrid(characterList = characterList, navController = navController)
-            } else {
-                EmptyListText()
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                SearchRow()
+
+                if (characterList.itemCount > 0) {
+                    SearchGrid(characterList = characterList, navController = navController)
+                } else {
+                    EmptySearchListText()
+                }
             }
 
             characterList.apply {

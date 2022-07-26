@@ -1,4 +1,4 @@
-package com.rmoralf.marveltest.domain.usecases
+package com.rmoralf.marveltest.domain.usecases.search
 
 import com.rmoralf.marveltest.domain.repository.CharactersRepository
 

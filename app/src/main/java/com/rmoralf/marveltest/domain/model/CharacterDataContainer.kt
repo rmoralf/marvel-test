@@ -11,9 +11,9 @@ data class CharacterDataContainer(
 )
 
 fun ApiCharacterDataContainer.toDomain() = CharacterDataContainer(
-    offset = offset,
-    limit = limit,
-    total = total,
-    count = count,
-    results = results.map { it.toDomain() }
+    offset = offset ?: 0,
+    limit = limit ?: 0,
+    total = total ?: 0,
+    count = count ?: 0,
+    results = results?.map { it.toDomain() }.orEmpty()
 )

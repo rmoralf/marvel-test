@@ -13,11 +13,11 @@ data class CharacterDataWrapper(
 )
 
 fun ApiCharacterDataWrapper.toDomain() = CharacterDataWrapper(
-    code = code,
-    status = status,
-    copyright = copyright,
-    attributionText = attributionText,
-    attributionHTML = attributionHTML,
-    data = data.toDomain(),
-    etag = etag
+    code = code ?: 0,
+    status = status.orEmpty(),
+    copyright = copyright.orEmpty(),
+    attributionText = attributionText.orEmpty(),
+    attributionHTML = attributionHTML.orEmpty(),
+    data = data?.toDomain() ?: CharacterDataContainer(0, 0, 0, 0, emptyList()),
+    etag = etag.orEmpty()
 )

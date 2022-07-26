@@ -5,9 +5,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import coil.annotation.ExperimentalCoilApi
-import com.rmoralf.marveltest.core.Constants.CHAR_ID
+import com.rmoralf.marveltest.core.Constants.Routes.CHAR_ID
 import com.rmoralf.marveltest.core.Utils.Companion.createSubroute
 import com.rmoralf.marveltest.presentation.details.DetailsScreen
+import com.rmoralf.marveltest.presentation.favorites.FavoritesScreen
+import com.rmoralf.marveltest.presentation.menu.MenuScreen
 import com.rmoralf.marveltest.presentation.search.SearchScreen
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -21,13 +23,11 @@ fun NavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.SEARCH.route,
+        startDestination = Screen.MENU.route,
     ) {
-/*
         composable(route = Screen.MENU.route) {
             MenuScreen(navController = navController)
         }
-*/
 
         composable(route = Screen.SEARCH.route) {
             SearchScreen(navController = navController)
@@ -39,10 +39,8 @@ fun NavGraph(
             DetailsScreen(navController = navController)
         }
 
-/*
         composable(route = Screen.FAVORITES.route) {
             FavoritesScreen(navController = navController)
         }
-*/
     }
 }

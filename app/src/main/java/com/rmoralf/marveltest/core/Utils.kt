@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.ui.platform.UriHandler
 import androidx.paging.LoadState
-import com.rmoralf.marveltest.core.Constants.TAG
+import com.rmoralf.marveltest.core.Constants.Companion.TAG
 
 class Utils {
     companion object {
@@ -18,7 +18,6 @@ class Utils {
             val error = errorState.error
             Log.d(TAG, error.message ?: error.toString())
         }
-
 
         fun createSubroute(screen: String, arg: String): String {
             return "$screen/{$arg}"

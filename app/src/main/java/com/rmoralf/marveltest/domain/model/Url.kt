@@ -8,6 +8,6 @@ data class Url(
 )
 
 fun ApiUrl.toDomain() = Url(
-    type = type,
-    url = url
+    type = type.orEmpty(),
+    url = url.orEmpty()
 )

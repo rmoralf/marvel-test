@@ -6,5 +6,16 @@
     <string name="screen_details">Character Details</string>
     <string name="screen_favorites">Favorite Characters</string>
 
-    <string name="empty_results_list">There are no results</string>
+    <string name="search_screen_btn">Search</string>
+    <string name="search_screen_textfield">Search a super hero</string>
+
+    <string name="empty_results_list">There are no results yet</string>
+    <string name="empty_fav_list">There are no favorites characters yet</string>
+
+    <string name="topapp_back">Back</string>
+    <string name="topapp_fav">Fav</string>
+    <string name="topapp_unfav">Unfav</string>
+
+    <string name="marvel_logo">Marvel logo</string>
+    <string name="loading_logo">Loading</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.rmoralf.marveltest.domain.model
 
+import com.rmoralf.marveltest.data.database.entities.CharacterEntity
 import com.rmoralf.marveltest.data.network.entities.ApiCharacter
 
 data class Character(
@@ -12,10 +13,22 @@ data class Character(
 )
 
 fun ApiCharacter.toDomain() = Character(
+    id = id ?: 0,
+    name = name.orEmpty(),
+    description = description.orEmpty(),
+    resourceURI = resourceURI.orEmpty(),
+    thumbnail = thumbnail?.toDomain() ?: Image("", ""),
+    urls = urls?.map { it.toDomain() }.orEmpty()
+)
+
+fun CharacterEntity.toDomain() = Character(
     id = id,
-    name = name,
-    description = description,
-    resourceURI = resourceURI,
-    thumbnail = thumbnail.toDomain(),
-    urls = urls.map { it.toDomain() }
+    name = name.orEmpty(),
+    thumbnail = Image(
+        path = thumbnail_path.orEmpty(),
+        extension = thumbnail_ext.orEmpty()
+    ),
+    description = String(),
+    resourceURI = String(),
+    urls = emptyList()
 )

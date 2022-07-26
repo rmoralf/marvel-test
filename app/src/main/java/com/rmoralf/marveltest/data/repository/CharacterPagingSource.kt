@@ -12,16 +12,26 @@ private const val LOAD_SIZE = 20
 
 class CharacterPagingSource(
     private val charactersService: CharactersService,
-//    private val query: String
+    private val query: String
 ) : PagingSource<Int, Character>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> {
         val position = (params.key ?: STARTING_OFFSET)
         return try {
-            val response =
-                charactersService.getAllCharacters(offset = position, limit = LOAD_SIZE)
+            val response = if (query.isNotEmpty()) {
+                charactersService.searchCharacters(
+                    offset = position,
+                    limit = LOAD_SIZE,
+                    nameStartsWith = query
+                )
+            } else {
+                charactersService.getAllCharacters(
+                    offset = position,
+                    limit = LOAD_SIZE
+                )
+            }
             val data = response.data
-            val characters = data.results.map { it.toDomain() }
+            val characters = data?.results?.map { it.toDomain() }.orEmpty()
 
             LoadResult.Page(
                 data = characters,

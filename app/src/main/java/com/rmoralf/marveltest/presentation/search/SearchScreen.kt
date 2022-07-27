@@ -16,7 +16,9 @@ import com.rmoralf.marveltest.presentation.search.components.EmptySearchListText
 import com.rmoralf.marveltest.presentation.search.components.SearchGrid
 import com.rmoralf.marveltest.presentation.search.components.SearchRow
 import com.rmoralf.marveltest.presentation.search.components.SearchTopBar
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @Composable
 fun SearchScreen(
     navController: NavController,
@@ -24,7 +26,6 @@ fun SearchScreen(
 ) {
 
     val characterList = viewModel.characters.collectAsLazyPagingItems()
-
 
     Scaffold(
         topBar = { SearchTopBar(navController) }

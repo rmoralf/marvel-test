@@ -25,6 +25,5 @@ class FavoritesViewModel @Inject constructor(
                 _state.value = response
             }
         }
-
     }
 }

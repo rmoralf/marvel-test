@@ -1,5 +1,6 @@
 package com.rmoralf.marveltest.presentation.search
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
